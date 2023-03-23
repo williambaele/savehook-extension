@@ -1,3 +1,11 @@
+/* GET CURRENT URL */
+function getCurrentURL(callback) {
+  chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+    var url = tabs[0].url;
+    callback(url);
+  });
+}
+
 /***************************************************************************/
                               /* SETTINGS */
 /***************************************************************************/
@@ -38,33 +46,38 @@ webhookform.addEventListener('submit', (e) => {
   }
 });
 
-
+/* NEW WEBSITE */
 function newWebsite(discordwebhook) {
   let url = discordwebhook;
   let description = document.querySelector("#description");
   let content = description.value
-  let websiteUrl = window.location.href; // get current URL of active tab
 
-  function hexToDecimal(hex) {
-    return parseInt(hex.replace("#",""), 16)
-  }
-  const params = {
-    "embeds": [{
-      "username": "SaveHook",
-      "color": hexToDecimal("#00FF00"),
-      "thumbnail": {
-        "url": "https://logowik.com/content/uploads/images/discord-new-20218785.jpg"
-      },
-      "title": "New website saved ✅",
-      "description": `${content} \n ${websiteUrl}`
-    }]
-  };
-  const requestOptions = {
-    method: "POST",
-    headers: { "Content-type": "application/json" },
-    body: JSON.stringify(params)
-  };
-  fetch(url, requestOptions);
+  getCurrentURL(function(websiteUrl) {
+    function hexToDecimal(hex) {
+      return parseInt(hex.replace("#",""), 16)
+    }
+    const params = {
+      "embeds": [{
+        "footer": {
+          "text": "Tool coded by William Baele",
+          "icon_url": "https://avatars.githubusercontent.com/u/83872057?v=4"
+        },
+        "username": "SaveHook",
+        "color": hexToDecimal("#00FF00"),
+        "thumbnail": {
+          "url": "https://logowik.com/content/uploads/images/discord-new-20218785.jpg"
+        },
+        "title": "New website saved ✅",
+        "description": `${content} \n ${websiteUrl}`
+      }]
+    };
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify(params)
+    };
+    fetch(url, requestOptions);
+  });
 }
 
 
