@@ -1,0 +1,9 @@
+{
+  "name": "SaveHook",
+  "description": "Save easily your docs",
+  "version": "0.0.1",
+  "manifest_version": 3,
+  "action": {
+    "default_popup": "index.html"
+  }
+}
