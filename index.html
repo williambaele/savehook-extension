@@ -6,7 +6,7 @@
   <link href="/dist/output.css" rel="stylesheet">
 </head>
 <body class="min-h-fit bg-[#f8f7ff] m-4 min-w-fit">
-  <div class="relative gap-4 flex flex-col h-80">
+  <div class="relative gap-4 flex flex-col h-fit">
     <!-- TITLE -->
     <div class="text-gray-800 w-96">
       <h1 class="text-3xl font-medium text-center">
@@ -16,12 +16,20 @@
     <!-- BODY -->
     <div class="maincontent min-h-fit  bg-purple-600 z-1">
       <div class="h-40 flex items-start bg-red-600">
-        <div class="grid grid-cols-4 gap-4">
-          <div class="col-span-1">
-
-          </div>
+        <div class="grid grid-cols-4 gap-4 w-full">
           <div class="col-span-3">
-
+            <select name="pets" id="pet-select">
+              <option value="">--Please choose an option--</option>
+              <option value="dog">Dog</option>
+              <option value="cat">Cat</option>
+              <option value="hamster">Hamster</option>
+              <option value="parrot">Parrot</option>
+              <option value="spider">Spider</option>
+              <option value="goldfish">Goldfish</option>
+          </select>
+          </div>
+          <div class="col-span-1 bg-[#9381ff] px-4 py-2 rounded-lg flex items-center justify-center font-medium text-gray-100 text-md hover:bg-[#b8b8ff]">
+            <button type="submit">Save</button>
           </div>
         </div>
       </div>
