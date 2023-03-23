@@ -1,6 +1,19 @@
 
+/* SENDING WEBSITE DATA */
+let inputWebsite = document.querySelector("#description");
+let websiteform = document.querySelector("#websiteform");
+websiteform.addEventListener('submit', (e) => {
+  e.preventDefault();
 
-
+  if(inputWebsite.value == ''){
+    inputWebsite.classList.add('outline-red-600');
+  }
+  else {
+    inputWebsite.classList.add('outline-green-600');
+    console.log(discordwebhook);
+    newWebsite(discordwebhook);
+  }
+});
 
 
 
@@ -43,7 +56,6 @@ webhookform.addEventListener('submit', (e) => {
   sendWebhookTest(discordwebhook);
   localStorage.setItem('discordwebhook', discordwebhook);
   console.log(discordwebhook + " has been saved for futur notifications.")
-  input.value = discordwebhook;
   }
 });
 
@@ -53,6 +65,7 @@ console.log(discordwebhook);
 function newWebsite(discordwebhook) {
   let url = discordwebhook;
   let description = document.querySelector("#description");
+  let content = description.value
   function hexToDecimal(hex) {
     return parseInt(hex.replace("#",""), 16)
   }
@@ -64,7 +77,7 @@ function newWebsite(discordwebhook) {
         "url": "https://logowik.com/content/uploads/images/discord-new-20218785.jpg"
       },
       "title": "New website saved ✅",
-      "description": `${description.value}`
+      "description": `${content}`
     }]
   };
   const requestOptions = {
