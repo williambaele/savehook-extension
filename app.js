@@ -1,19 +1,5 @@
+/* GET ACTUAL URL */
 
-/* SENDING WEBSITE DATA */
-let inputWebsite = document.querySelector("#description");
-let websiteform = document.querySelector("#websiteform");
-websiteform.addEventListener('submit', (e) => {
-  e.preventDefault();
-
-  if(inputWebsite.value == ''){
-    inputWebsite.classList.add('outline-red-600');
-  }
-  else {
-    inputWebsite.classList.add('outline-green-600');
-    console.log(discordwebhook);
-    newWebsite(discordwebhook);
-  }
-});
 
 
 
@@ -22,7 +8,7 @@ websiteform.addEventListener('submit', (e) => {
 /***************************************************************************/
                               /* SETTINGS */
 /***************************************************************************/
-/* SEND WEBHOOK TEST FUNCTION*/
+/* SEND WEBHOOK TEST FUNCTION */
 function sendWebhookTest(discordwebhook) {
   let url = discordwebhook;
   const params = {
@@ -38,7 +24,7 @@ function sendWebhookTest(discordwebhook) {
   fetch(url, requestOptions);
 }
 
-/* WEBHOOK SAVING FUNCTION*/
+/* WEBHOOK SAVING FUNCTION */
 let input = document.querySelector("#formwebhook");
 let webhookform = document.querySelector("#webhookform");
 let discordwebhook = '';
@@ -59,34 +45,52 @@ webhookform.addEventListener('submit', (e) => {
   }
 });
 
-console.log(discordwebhook);
 
 /* NEW WEBSITE SAVED */
 function newWebsite(discordwebhook) {
   let url = discordwebhook;
   let description = document.querySelector("#description");
   let content = description.value
-  function hexToDecimal(hex) {
-    return parseInt(hex.replace("#",""), 16)
-  }
-  const params = {
-    "embeds": [{
-      "username": "SaveHook",
-      "color": hexToDecimal("#00FF00"),
-      "thumbnail": {
-        "url": "https://logowik.com/content/uploads/images/discord-new-20218785.jpg"
-      },
-      "title": "New website saved ✅",
-      "description": `${content}`
-    }]
-  };
-  const requestOptions = {
-    method: "POST",
-    headers: { "Content-type": "application/json" },
-    body: JSON.stringify(params)
-  };
-  fetch(url, requestOptions);
+
+  getCurrentURL(function(websiteUrl) {
+    function hexToDecimal(hex) {
+      return parseInt(hex.replace("#",""), 16)
+    }
+    const params = {
+      "embeds": [{
+        "username": "SaveHook",
+        "color": hexToDecimal("#00FF00"),
+        "thumbnail": {
+          "url": "https://logowik.com/content/uploads/images/discord-new-20218785.jpg"
+        },
+        "title": "New website saved ✅",
+        "description": `${content} \n ${websiteUrl}`
+      }]
+    };
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify(params)
+    };
+    fetch(url, requestOptions);
+  });
 }
+
+/* WEBSITE DATA FORM */
+let inputWebsite = document.querySelector("#description");
+let websiteform = document.querySelector("#websiteform");
+websiteform.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  if(inputWebsite.value == ''){
+    inputWebsite.classList.add('outline-red-600');
+  }
+  else {
+    inputWebsite.classList.add('outline-green-600');
+    console.log(discordwebhook);
+    newWebsite(discordwebhook);
+  }
+});
 
 
 /* SETTING BTN TOOGLE */
