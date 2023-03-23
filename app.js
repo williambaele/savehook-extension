@@ -1,10 +1,3 @@
-/* GET ACTUAL URL */
-
-
-
-
-
-
 /***************************************************************************/
                               /* SETTINGS */
 /***************************************************************************/
@@ -46,35 +39,34 @@ webhookform.addEventListener('submit', (e) => {
 });
 
 
-/* NEW WEBSITE SAVED */
 function newWebsite(discordwebhook) {
   let url = discordwebhook;
   let description = document.querySelector("#description");
   let content = description.value
+  let websiteUrl = window.location.href; // get current URL of active tab
 
-  getCurrentURL(function(websiteUrl) {
-    function hexToDecimal(hex) {
-      return parseInt(hex.replace("#",""), 16)
-    }
-    const params = {
-      "embeds": [{
-        "username": "SaveHook",
-        "color": hexToDecimal("#00FF00"),
-        "thumbnail": {
-          "url": "https://logowik.com/content/uploads/images/discord-new-20218785.jpg"
-        },
-        "title": "New website saved ✅",
-        "description": `${content} \n ${websiteUrl}`
-      }]
-    };
-    const requestOptions = {
-      method: "POST",
-      headers: { "Content-type": "application/json" },
-      body: JSON.stringify(params)
-    };
-    fetch(url, requestOptions);
-  });
+  function hexToDecimal(hex) {
+    return parseInt(hex.replace("#",""), 16)
+  }
+  const params = {
+    "embeds": [{
+      "username": "SaveHook",
+      "color": hexToDecimal("#00FF00"),
+      "thumbnail": {
+        "url": "https://logowik.com/content/uploads/images/discord-new-20218785.jpg"
+      },
+      "title": "New website saved ✅",
+      "description": `${content} \n ${websiteUrl}`
+    }]
+  };
+  const requestOptions = {
+    method: "POST",
+    headers: { "Content-type": "application/json" },
+    body: JSON.stringify(params)
+  };
+  fetch(url, requestOptions);
 }
+
 
 /* WEBSITE DATA FORM */
 let inputWebsite = document.querySelector("#description");
@@ -91,7 +83,6 @@ websiteform.addEventListener('submit', (e) => {
     newWebsite(discordwebhook);
   }
 });
-
 
 /* SETTING BTN TOOGLE */
 document.querySelector("#urlwebhook").addEventListener("click", function() {
