@@ -4,6 +4,27 @@
 
 
 
+
+
+/***************************************************************************/
+                              /* SETTINGS */
+/***************************************************************************/
+/* SEND WEBHOOK TEST FUNCTION*/
+function sendWebhookTest(discordwebhook) {
+  let url = discordwebhook;
+  const params = {
+    username: "SaveHook",
+    avatar_url: "https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png",
+    content: "Your webhook works well ✅"
+  };
+  const requestOptions = {
+    method: "POST",
+    headers: { "Content-type": "application/json" },
+    body: JSON.stringify(params)
+  };
+  fetch(url, requestOptions);
+}
+
 /* WEBHOOK SAVING FUNCTION*/
 let input = document.querySelector("#formwebhook");
 let webhookform = document.querySelector("#webhookform");
@@ -19,14 +40,40 @@ webhookform.addEventListener('submit', (e) => {
   else {
   discordwebhook = input.value;
   input.classList.add('outline-green-600');
-  // sendWebhookTest(discordwebhook);
+  sendWebhookTest(discordwebhook);
   localStorage.setItem('discordwebhook', discordwebhook);
   console.log(discordwebhook + " has been saved for futur notifications.")
   input.value = discordwebhook;
   }
 });
 
-
+/* NEW WEBSITE SAVED */
+function newWebsite(discordwebhook) {
+  let url = discordwebhook;
+  function hexToDecimal(hex) {
+    return parseInt(hex.replace("#",""), 16)
+  }
+  let saleInput = document.querySelector("#salevalue");
+  const saleData = saleInput.value;
+  const params = {
+    "embeds": [{
+      "username": "SaveHook",
+      "color": hexToDecimal("#00FF00"),
+      "thumbnail": {
+        "url": "https://pbs.twimg.com/profile_images/1502207992883777537/Q_LgbS4-_400x400.jpg"
+      },
+      "title": "New sale added ✅",
+      "description": ` Sale ID: ${saleData}
+      Statut: In shipping 🚛`
+    }]
+  };
+  const requestOptions = {
+    method: "POST",
+    headers: { "Content-type": "application/json" },
+    body: JSON.stringify(params)
+  };
+  fetch(url, requestOptions);
+}
 
 
 /* SETTING BTN TOOGLE */
