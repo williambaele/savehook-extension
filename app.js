@@ -2,8 +2,10 @@ console.log("Hi");
 
 
 document.querySelector("#urlwebhook").addEventListener("click", function() {
-
-  document.querySelector("#formwebhook").classList.remove('hidden');
-  document.querySelector("#formwebhook").classList.remove('block');
-
+  var x = document.getElementById("formwebhook");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
 });
