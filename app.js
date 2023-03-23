@@ -47,24 +47,24 @@ webhookform.addEventListener('submit', (e) => {
   }
 });
 
+console.log(discordwebhook);
+
 /* NEW WEBSITE SAVED */
 function newWebsite(discordwebhook) {
   let url = discordwebhook;
+  let description = document.querySelector("#description");
   function hexToDecimal(hex) {
     return parseInt(hex.replace("#",""), 16)
   }
-  let saleInput = document.querySelector("#salevalue");
-  const saleData = saleInput.value;
   const params = {
     "embeds": [{
       "username": "SaveHook",
       "color": hexToDecimal("#00FF00"),
       "thumbnail": {
-        "url": "https://pbs.twimg.com/profile_images/1502207992883777537/Q_LgbS4-_400x400.jpg"
+        "url": "https://logowik.com/content/uploads/images/discord-new-20218785.jpg"
       },
-      "title": "New sale added ✅",
-      "description": ` Sale ID: ${saleData}
-      Statut: In shipping 🚛`
+      "title": "New website saved ✅",
+      "description": `${description.value}`
     }]
   };
   const requestOptions = {
