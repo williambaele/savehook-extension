@@ -9,16 +9,10 @@
   <div class="relative gap-4 flex flex-col h-content w-96">
     <!-- BODY -->
     <div class="maincontent min-h-fit">
-      <div class="grid grid-cols-4 gap-4 w-full">
-        <div class="col-span-3">
-          <form id="websiteform">
-            <input type="text" class="w-full py-2 bg-gray-200 rounded-lg px-2" placeholder="Your description" id="description">
-          </form>
-        </div>
-        <div class="col-span-1 bg-[#9381ff] px-4 py-2 rounded-lg flex items-center justify-center font-medium text-gray-100 text-md hover:bg-[#b8b8ff]">
-          <button type="submit">Save</button>
-        </div>
-      </div>
+      <form id="websiteform" class="grid grid-cols-4 gap-4 w-full">
+        <input type="text" class="col-span-3 w-full py-2 bg-gray-200 rounded-lg px-2" placeholder="Your description" id="description">
+        <button type="submit" class="col-span-1 bg-[#9381ff] px-4 py-2 rounded-lg flex items-center justify-center font-medium text-gray-100 text-md hover:bg-[#b8b8ff]">Save</button>
+      </form>
     </div>
     <!-- WEBHOOK'S SETTING -->
     <div class="min-h-fit w-96 gap-2 grid grid-cols-5">

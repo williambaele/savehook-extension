@@ -28,7 +28,7 @@ function sendWebhookTest(discordwebhook) {
 /* WEBHOOK SAVING FUNCTION */
 let input = document.querySelector("#formwebhook");
 let webhookform = document.querySelector("#webhookform");
-let discordwebhook = '';
+let discordwebhook = localStorage.getItem('discord') || '';
 
 webhookform.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -39,9 +39,9 @@ webhookform.addEventListener('submit', (e) => {
   }
   else {
   discordwebhook = input.value;
+  localStorage.setItem('discord', discordwebhook);
   input.classList.add('outline-green-600');
   sendWebhookTest(discordwebhook);
-  localStorage.setItem('discordwebhook', discordwebhook);
   console.log(discordwebhook + " has been saved for futur notifications.")
   }
 });
